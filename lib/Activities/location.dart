@@ -166,7 +166,7 @@ class _LocationState extends State<Location> {
                     child: IconButton(
                       icon: const Icon(Icons.add),
                       onPressed: () {
-                        addCityCard(cityController.text);
+                        addCityCard(cityController.text);                       
                       },
                     ),
                   ),
@@ -193,6 +193,7 @@ class _LocationState extends State<Location> {
 
                      onTap: (){
                       Navigator.pushNamed(context, '/home',arguments: cityCards[index].cityName,);
+                      // Navigator.pushNamed(context, '/home',arguments: "Mumbai",);
                      },
 
                       onLongPress: () {

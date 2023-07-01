@@ -29,7 +29,9 @@ class _HomeState extends State<Home> {
       body: Obx(
         ()=> controller.isloaded.value==true? SafeArea(
          child: FutureBuilder(
-          future: controller.currentWeatherData,
+          // future: controller.currentWeatherData,
+          future: widget.cityName == "Default City"? controller.currentWeatherData:controller.getCityWeatherData(widget.cityName),
+          
           builder: (BuildContext context, AsyncSnapshot  snapshot){
             if(snapshot.hasData){
               CurrentWeatherData data = snapshot.data;
@@ -42,6 +44,7 @@ class _HomeState extends State<Home> {
               crossAxisAlignment: CrossAxisAlignment.center,
                children: [
                  Text(
+                  // widget.cityName
                       "${data.name}",
                       style: const TextStyle(fontSize: 28, color: Colors.white, fontWeight: FontWeight.bold),
                     ),

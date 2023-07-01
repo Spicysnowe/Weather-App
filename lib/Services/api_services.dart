@@ -5,6 +5,18 @@ import 'package:weather_app/Models/hourly_model.dart';
 
 
 
+getCurrentWeatherUsingCity(String cityName) async{
+  print("city data $cityName");
+ 
+  var link="https://api.openweathermap.org/data/2.5/weather?q=$cityName&appid=$apiKey&units=metric";
+  var res = await http.get(Uri.parse(link));
+  print(res.statusCode);
+  if(res.statusCode ==200){
+    var data=currentWeatherDataFromJson(res.body.toString());
+ print(data);
+ return data;
+  }
+}
 
 
 getCurrentWeather(lat,long) async{
@@ -20,9 +32,10 @@ getCurrentWeather(lat,long) async{
 getHourlyWeather(lat,long) async{
 var link ="https://api.openweathermap.org/data/2.5/forecast?lat=$lat&lon=$long&appid=$apiKey&units=metric";
   var res = await http.get(Uri.parse(link));
+  print(res);
   if(res.statusCode ==200){
     var data=hourlyWeatherDataFromJson(res.body.toString());
- print ("Hourly Data is recieved");
+ print ("Hourly Data is recieved $data");
  return data;
   }
 }
